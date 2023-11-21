@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class FrontEnd {
+public class LoginScreen {
     public void CreateWindow() {
         JFrame frame = new JFrame("Mom and Pops Pizzeria");
 
@@ -19,19 +19,19 @@ public class FrontEnd {
 
         JLabel headLogo = getjLabel();
         JButton loginButton = getLoginButton();
-        JButton guestButton = getGuestButton();
+        JButton employeeButton = getEmployeeButton();
         JLabel sloganButton = getSlogan();
 
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
         lwrSection.add(loginButton);
-        lwrSection.add(guestButton);
+        lwrSection.add(employeeButton);
         lwrSection.add(sloganButton);
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, loginButton, guestButton, sloganButton));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, loginButton, employeeButton, sloganButton));
         frame.setVisible(true);
     }
 
@@ -112,7 +112,7 @@ public class FrontEnd {
 
         return loginButton;
     }
-    private static JButton getGuestButton() {
+    private static JButton getEmployeeButton() {
 
         JButton guestButton = new JButton();
         guestButton.setText("Continue as a guest");
