@@ -4,8 +4,10 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class LoginScreen {
+
+    private JFrame frame;
     public void CreateWindow() {
-        JFrame frame = new JFrame("Mom and Pops Pizzeria");
+        frame = new JFrame("Login Screen");
 
         JPanel header = new JPanel();
         header.setBackground(new Color(58, 34, 32));
@@ -18,28 +20,31 @@ public class LoginScreen {
         lwrSection.setLayout(null);
 
         JLabel headLogo = getjLabel();
-        JButton loginButton = getLoginButton();
+        JButton customerButton = getCustomerButton();
         JButton employeeButton = getEmployeeButton();
         JLabel sloganButton = getSlogan();
+        JButton backButton = getBackButton();
 
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
-        lwrSection.add(loginButton);
+        lwrSection.add(customerButton);
         lwrSection.add(employeeButton);
         lwrSection.add(sloganButton);
+        lwrSection.add(backButton);
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, loginButton, employeeButton, sloganButton));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, customerButton, employeeButton, sloganButton, backButton));
         frame.setVisible(true);
+
     }
 
 
     // Function to create and configure the JLabel with the logo
     private static JLabel getjLabel() {
         // Load images for the logo
-        ImageIcon logo = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\logo.png");
+        ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
 
         // Create a JLabel for the logo
         JLabel headLogo = new JLabel();
@@ -83,61 +88,63 @@ public class LoginScreen {
         return shopCartButton;
     }*/
 
-    private static JButton getLoginButton() {
+    private static JButton getCustomerButton() {
         ImageIcon loginIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\LoginBrown.png");
 
         Image image = loginIcon.getImage();
         Image newImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         loginIcon = new ImageIcon(newImage);
 
-        JButton loginButton = new JButton();
-        loginButton.setIcon(loginIcon);
-        loginButton.setText("Login");
-        loginButton.setFont(new Font(null, Font.PLAIN, 20));
+        JButton customerButton = new JButton();
+        customerButton.setIcon(loginIcon);
+        customerButton.setText("Customer");
+        customerButton.setFont(new Font(null, Font.PLAIN, 20));
 
         // Set the background color to brown using RGB (58, 34, 32)
-        loginButton.setBackground(new Color(58, 34, 32));
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
+        customerButton.setBackground(new Color(58, 34, 32));
+        customerButton.setForeground(Color.WHITE);
+        customerButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
 
-        loginButton.setFocusPainted(false);
-        loginButton.setContentAreaFilled(true);
-        loginButton.setBorderPainted(false);
+        customerButton.setFocusPainted(false);
+        customerButton.setContentAreaFilled(true);
+        customerButton.setBorderPainted(false);
+        customerButton.setOpaque(true);
 
         ///loginButton.setBounds(150, 170, 200, 75);
-        loginButton.addActionListener(e -> {
+        customerButton.addActionListener(e -> {
             // Add your logic for handling shopCart button clicks here
-            System.out.println("Login button clicked");
+            System.out.println("Customer button clicked");
         });
 
-        return loginButton;
+        return customerButton;
     }
     private static JButton getEmployeeButton() {
 
-        JButton guestButton = new JButton();
-        guestButton.setText("Continue as a guest");
-        guestButton.setFont(new Font(null, Font.PLAIN, 20));
+        JButton employeeButton = new JButton();
+        employeeButton.setText("Employee");
+        employeeButton.setFont(new Font(null, Font.PLAIN, 20));
         // Set the background color to brown using RGB (58, 34, 32)
-        guestButton.setBackground(new Color(58, 34, 32));
-        guestButton.setForeground(Color.WHITE);
-        guestButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
+        employeeButton.setBackground(new Color(58, 34, 32));
+        employeeButton.setForeground(Color.WHITE);
+        employeeButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
 
-        guestButton.setFocusPainted(false);
-        guestButton.setContentAreaFilled(true);
-        guestButton.setBorderPainted(false);
+        employeeButton.setFocusPainted(false);
+        employeeButton.setContentAreaFilled(true);
+        employeeButton.setBorderPainted(false);
+        employeeButton.setOpaque(true);
 
         ///guestButton.setBounds(450, 170, 200, 75);
-        guestButton.addActionListener(e -> {
+        employeeButton.addActionListener(e -> {
             // Add your logic for handling shopCart button clicks here
-            System.out.println("Guest button clicked");
+            System.out.println("Employee button clicked");
         });
 
-        return guestButton;
+        return employeeButton;
     }
 
     private static JLabel getSlogan() {
         // Load images for the logo
-        ImageIcon slogan = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\Slogan.PNG");
+        ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
 
         // Create a JLabel for the logo
         JLabel headLogo = new JLabel();
@@ -152,21 +159,48 @@ public class LoginScreen {
 
         return headLogo;
     }
+
+    private JButton getBackButton(){
+
+        JButton backButton = new JButton();
+        backButton.setText("← Back");
+        backButton.setFont(new Font(null, Font.PLAIN, 20));
+        backButton.setForeground(new Color(58, 34, 32));
+
+        backButton.setBackground(Color.white);
+
+        backButton.setFocusPainted(false);
+        backButton.setContentAreaFilled(true);
+        backButton.setBorderPainted(false);
+        backButton.setOpaque(true);
+
+        backButton.addActionListener(e -> {
+            this.frame.dispose();
+
+            // Add your logic for handling shopCart button clicks here
+            FrontEnd fe = new FrontEnd();
+            fe.CreateWindow();
+        });
+
+        return backButton;
+    }
     private static class ResizeListener extends ComponentAdapter {
         private final JPanel header;
         private final JPanel lwrSection;
         private final JLabel headLogo;
-        private final JButton loginButton;
-        private final JButton guestButton;
+        private final JButton customerButton;
+        private final JButton employeeButton;
         private final JLabel sloganButton;
+        private final JButton backButton;
 
-        ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton loginButton, JButton guestButton, JLabel sloganButton) {
+        ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton customerButton, JButton employeeButton, JLabel sloganButton, JButton backButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
-            this.loginButton = loginButton;
-            this.guestButton = guestButton;
+            this.customerButton = customerButton;
+            this.employeeButton = employeeButton;
             this.sloganButton = sloganButton;
+            this.backButton = backButton;
         }
 
         @Override
@@ -183,11 +217,12 @@ public class LoginScreen {
             lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 
             // Adjust button positions
-            loginButton.setBounds((int) (frameWidth / 5.55), (int) (frameHeight / 2.6), (int) (frameWidth / 3.7), frameHeight / 7);
-            guestButton.setBounds((int) (3 * frameWidth / 5.55), (int) (frameHeight / 2.6), (int) (frameWidth / 3.7), frameHeight / 7);
+            customerButton.setBounds((int) (2*frameWidth / 5.55), (int) (frameHeight / 2.6), (int) (frameWidth / 3.7), frameHeight / 7);
+            employeeButton.setBounds((int) (2*frameWidth / 5.55), (int) (frameHeight / 1.7), (int) (frameWidth / 3.7), frameHeight / 7);
+            backButton.setBounds(15, 30, (frameWidth / 6), frameHeight / 9);
 
             // Stretched icon for slogan
-            ImageIcon slogan = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\Slogan.PNG");
+            ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
             int sloganWidth = frameWidth / 2;
             int sloganHeight = (int) (sloganWidth * ((double) slogan.getIconHeight() / slogan.getIconWidth()));
 

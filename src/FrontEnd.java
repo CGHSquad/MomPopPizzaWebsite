@@ -4,8 +4,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class FrontEnd {
+    private JFrame frame;
     public void CreateWindow() {
-        JFrame frame = new JFrame("Mom and Pops Pizzeria");
+        frame = new JFrame("Mom and Pops Pizzeria");
 
         JPanel header = new JPanel();
         header.setBackground(new Color(58, 34, 32));
@@ -39,7 +40,7 @@ public class FrontEnd {
     // Function to create and configure the JLabel with the logo
     private static JLabel getjLabel() {
         // Load images for the logo
-        ImageIcon logo = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\logo.png");
+        ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
 
         // Create a JLabel for the logo
         JLabel headLogo = new JLabel();
@@ -50,7 +51,7 @@ public class FrontEnd {
         int heightLogo = logo.getIconHeight();
 
         // Set the bounds of the label to the actual size of the image
-        headLogo.setBounds(0, 15, widthLogo, heightLogo);
+        headLogo.setBounds(0, 5, widthLogo, heightLogo);
 
         return headLogo;
     }
@@ -83,8 +84,8 @@ public class FrontEnd {
         return shopCartButton;
     }*/
 
-    private static JButton getLoginButton() {
-        ImageIcon loginIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\LoginBrown.png");
+    private JButton getLoginButton() {
+        ImageIcon loginIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/LoginBrown.png");
 
         Image image = loginIcon.getImage();
         Image newImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -98,16 +99,20 @@ public class FrontEnd {
         // Set the background color to brown using RGB (58, 34, 32)
         loginButton.setBackground(new Color(58, 34, 32));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
+        loginButton.setBorder(BorderFactory.createLineBorder(Color.ORANGE,20));
 
         loginButton.setFocusPainted(false);
         loginButton.setContentAreaFilled(true);
         loginButton.setBorderPainted(false);
+        loginButton.setOpaque(true);
 
         ///loginButton.setBounds(150, 170, 200, 75);
         loginButton.addActionListener(e -> {
+            this.frame.dispose();
+
             // Add your logic for handling shopCart button clicks here
-            System.out.println("Login button clicked");
+            LoginScreen ls = new LoginScreen();
+            ls.CreateWindow();
         });
 
         return loginButton;
@@ -120,11 +125,12 @@ public class FrontEnd {
         // Set the background color to brown using RGB (58, 34, 32)
         guestButton.setBackground(new Color(58, 34, 32));
         guestButton.setForeground(Color.WHITE);
-        guestButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 20, true));
+        guestButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 20, true));
 
         guestButton.setFocusPainted(false);
         guestButton.setContentAreaFilled(true);
         guestButton.setBorderPainted(false);
+        guestButton.setOpaque(true);
 
         ///guestButton.setBounds(450, 170, 200, 75);
         guestButton.addActionListener(e -> {
@@ -135,9 +141,10 @@ public class FrontEnd {
         return guestButton;
     }
 
+
     private static JLabel getSlogan() {
         // Load images for the logo
-        ImageIcon slogan = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\Slogan.PNG");
+        ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
 
         // Create a JLabel for the logo
         JLabel headLogo = new JLabel();
@@ -178,7 +185,15 @@ public class FrontEnd {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = frameWidth / 3;
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            headLogo.setBounds(5, 10, headLogoWidth, headLogoHeight);
+
             // Adjust lower section size
             lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 
@@ -187,7 +202,7 @@ public class FrontEnd {
             guestButton.setBounds((int) (3 * frameWidth / 5.55), (int) (frameHeight / 2.6), (int) (frameWidth / 3.7), frameHeight / 7);
 
             // Stretched icon for slogan
-            ImageIcon slogan = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\Slogan.PNG");
+            ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
             int sloganWidth = frameWidth / 2;
             int sloganHeight = (int) (sloganWidth * ((double) slogan.getIconHeight() / slogan.getIconWidth()));
 
