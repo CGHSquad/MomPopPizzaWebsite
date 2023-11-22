@@ -20,21 +20,23 @@ public class ResetSuccess {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JTextArea success = getSuccess();
         JTextArea codeMessage = getCodeMessage();
         JTextField code = getCode();
         JLabel enterCode = getEnterCode();
         JButton backButton = getBackButton();
         JButton submitButton = getSubmitButton();
-        JButton homeButton = getHomeButton();
-        JButton menuButton = getMenuButton();
+        JButton homeButton = MethodFactory.getHomeButton();
+        JButton menuButton = MethodFactory.getMenuButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
         header.add(menuButton);
         header.add(homeButton);
+        header.add(shopCartButton);
         lwrSection.add(success);
         lwrSection.add(backButton);
         lwrSection.add(codeMessage);
@@ -44,51 +46,10 @@ public class ResetSuccess {
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, submitButton, success, codeMessage, enterCode, code, backButton, homeButton, menuButton));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, submitButton, success, codeMessage, enterCode, code, backButton, homeButton, menuButton, shopCartButton));
         frame.setVisible(true);
     }
-    private JButton getHomeButton() {
-        JButton homeButton = new JButton("Home");
-        homeButton.setFont(new Font(null, Font.PLAIN, 14));
-        homeButton.setForeground(Color.WHITE);
-        homeButton.setBackground(new Color(58, 34, 32));
-        homeButton.setFocusPainted(false);
-        homeButton.setContentAreaFilled(true);
-        homeButton.setBorderPainted(false);
-        homeButton.setOpaque(true);
-        // Add your action listener for the home button here
-        return homeButton;
-    }
 
-    private JButton getMenuButton() {
-        JButton menuButton = new JButton("Menu");
-        menuButton.setFont(new Font(null, Font.PLAIN, 14));
-        menuButton.setForeground(Color.WHITE);
-        menuButton.setBackground(new Color(58, 34, 32));
-        menuButton.setFocusPainted(false);
-        menuButton.setContentAreaFilled(true);
-        menuButton.setBorderPainted(false);
-        menuButton.setOpaque(true);
-        // Add your action listener for the menu button here
-        return menuButton;
-    }
-
-    private static JLabel getjLabel() {
-        ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
-
-        // Create a JLabel for the logo
-        JLabel headLogo = new JLabel();
-        headLogo.setIcon(logo);
-
-        // Get the dimensions of the image
-        int widthLogo = logo.getIconWidth();
-        int heightLogo = logo.getIconHeight();
-
-        // Set the bounds of the label to the actual size of the image
-        headLogo.setBounds(0, 5, widthLogo, heightLogo);
-
-        return headLogo;
-    }
     private JButton getBackButton(){
 
         JButton backButton = new JButton();
@@ -177,6 +138,7 @@ public class ResetSuccess {
         return submitButton;
     }
 
+
     private static class ResizeListener extends ComponentAdapter {
         private final JPanel header;
         private final JPanel lwrSection;
@@ -190,9 +152,11 @@ public class ResetSuccess {
         private final JButton homeButton;
         private final JButton menuButton;
 
+        private final JButton shopCartButton;
+
         ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton submitButton, JTextArea success,
                        JTextArea codeMessage, JLabel enterCode, JTextField code, JButton backButton,
-                       JButton homeButton, JButton menuButton) {
+                       JButton homeButton, JButton menuButton, JButton shopCartButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
@@ -204,6 +168,7 @@ public class ResetSuccess {
             this.backButton = backButton;
             this.homeButton = homeButton;
             this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
         }
 
         @Override
@@ -214,8 +179,7 @@ public class ResetSuccess {
 
             // Adjust header size
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
-            homeButton.setBounds(250, (frameHeight / 22), (frameWidth / 8), frameHeight / 12);
-            menuButton.setBounds(230 + (frameWidth / 8) + 5, (frameHeight / 22), (frameWidth / 8), frameHeight / 12);
+
             // Stretched icon for logo
             ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
@@ -230,9 +194,10 @@ public class ResetSuccess {
 
             // Move buttons alongside the logo
             int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
-            homeButton.setBounds(logoX + headLogoWidth + 10, buttonY, (frameWidth / 8), frameHeight / 12);
-            menuButton.setBounds(logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY, (frameWidth / 8), frameHeight / 12);
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
 
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
             // Adjust button positions
             success.setBounds((int) (2 * frameWidth / 9), (frameHeight / 8), (int) (frameWidth / 1.8), frameHeight / 7);
             codeMessage.setBounds((int) (2 * frameWidth / 9), (frameHeight / 4), (int) (frameWidth / 1.2), frameHeight / 7);
@@ -242,17 +207,16 @@ public class ResetSuccess {
             submitButton.setBounds((int) (3.5*frameWidth / 9), (frameHeight / 2) + 20, (int) (frameWidth / 7), frameHeight / 12);
 
             // Dynamically adjust font sizes based on frame height
-            float fontSizeHome = Math.max(15, frameHeight / 28f);
-            float fontSizeMenu = Math.max(15, frameHeight / 28f);
             float fontSizeSuccess = Math.max(15, frameHeight / 10f);
             float fontSizeCodeMessage = Math.max(10, frameHeight / 20f);
             float fontSizeEnterCode = Math.max(12, frameHeight / 20f);
             float fontSizeCode = Math.max(12, frameHeight / 15f);
             float fontSizeSubmitButton = Math.max(12, frameHeight / 35f);
 
+
             // Set new font sizes
-            homeButton.setFont(new Font(null, Font.PLAIN, (int) fontSizeHome));
-            menuButton.setFont(new Font(null, Font.PLAIN, (int) fontSizeMenu));
+            //homeButton.setFont(new Font(null, Font.PLAIN, (int) fontSizeHome));
+            //menuButton.setFont(new Font(null, Font.PLAIN, (int) fontSizeMenu));
             success.setFont(new Font(null, Font.PLAIN, (int) fontSizeSuccess));
             codeMessage.setFont(new Font(null, Font.PLAIN, (int) fontSizeCodeMessage));
             enterCode.setFont(new Font(null, Font.PLAIN, (int) fontSizeEnterCode));

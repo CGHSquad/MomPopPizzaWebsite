@@ -18,7 +18,7 @@ public class FrontEnd {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton loginButton = getLoginButton();
         JButton guestButton = getGuestButton();
         JLabel sloganButton = getSlogan();
@@ -38,7 +38,7 @@ public class FrontEnd {
 
 
     // Function to create and configure the JLabel with the logo
-    private static JLabel getjLabel() {
+    /*private static JLabel getjLabel() {
         // Load images for the logo
         ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
 
@@ -54,7 +54,7 @@ public class FrontEnd {
         headLogo.setBounds(0, 5, widthLogo, heightLogo);
 
         return headLogo;
-    }
+    }*/
 
     // Function to create and configure the JButton for the shopCart
     /*private static JButton getShopCartButton() {
@@ -186,14 +186,15 @@ public class FrontEnd {
 
             // Stretched icon for logo
             ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
-            int headLogoWidth = frameWidth / 3;
+            int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 
             Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
             headLogo.setIcon(new ImageIcon(scaledHeadLogo));
 
-            headLogo.setBounds(5, 10, headLogoWidth, headLogoHeight);
-
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
             // Adjust lower section size
             lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 

@@ -19,7 +19,7 @@ public class LoginScreen {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton customerButton = getCustomerButton();
         JButton employeeButton = getEmployeeButton();
         JLabel sloganButton = getSlogan();
@@ -42,51 +42,8 @@ public class LoginScreen {
 
 
     // Function to create and configure the JLabel with the logo
-    private static JLabel getjLabel() {
-        // Load images for the logo
-        ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
-
-        // Create a JLabel for the logo
-        JLabel headLogo = new JLabel();
-        headLogo.setIcon(logo);
-
-        // Get the dimensions of the image
-        int widthLogo = logo.getIconWidth();
-        int heightLogo = logo.getIconHeight();
-
-        // Set the bounds of the label to the actual size of the image
-        headLogo.setBounds(0, 15, widthLogo, heightLogo);
-
-        return headLogo;
-    }
 
     // Function to create and configure the JButton for the shopCart
-    /*private static JButton getShopCartButton() {
-        // Load image for the shopCart
-        ImageIcon shopCartIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\ShoppingCart.png");
-
-        // Create a JButton for the shopCart
-        JButton shopCartButton = new JButton();
-        shopCartButton.setIcon(shopCartIcon);
-        shopCartButton.setFocusPainted(false);
-        shopCartButton.setContentAreaFilled(false);
-        shopCartButton.setBorderPainted(false);
-
-        // Get the dimensions of the image
-        int widthCart = shopCartIcon.getIconWidth();
-        int heightCart = shopCartIcon.getIconHeight();
-
-        // Set the bounds of the button to the actual size of the image
-        shopCartButton.setBounds(700, 25, widthCart, heightCart);
-
-        // Add an ActionListener to handle button clicks
-        shopCartButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("ShopCart button clicked");
-        });
-
-        return shopCartButton;
-    }*/
 
     private static JButton getCustomerButton() {
         ImageIcon loginIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\LoginBrown.png");
@@ -212,9 +169,18 @@ public class LoginScreen {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
             // Adjust lower section size
-            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
+            //lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 
             // Adjust button positions
             customerButton.setBounds((int) (2*frameWidth / 5.55), (int) (frameHeight / 2.6), (int) (frameWidth / 3.7), frameHeight / 7);

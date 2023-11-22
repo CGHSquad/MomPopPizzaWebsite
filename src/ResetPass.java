@@ -20,17 +20,23 @@ public class ResetPass {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JTextArea resetPass = getResetPassword();
         JTextArea emailMessage = getEmailMessage();
         JTextField email = getEmail();
         JLabel emailLabel = getEmailLabel();
         JButton backButton = getBackButton();
         JButton submitButton = getSubmitButton();
+        JButton homeButton = MethodFactory.getHomeButton();
+        JButton menuButton = MethodFactory.getMenuButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
+        header.add(shopCartButton);
+        header.add(menuButton);
+        header.add(homeButton);
         lwrSection.add(resetPass);
         lwrSection.add(backButton);
         lwrSection.add(emailMessage);
@@ -40,27 +46,10 @@ public class ResetPass {
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, submitButton, resetPass, emailMessage, emailLabel, email, backButton));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, submitButton, resetPass, emailMessage, emailLabel, email, backButton, homeButton, menuButton, shopCartButton));
         frame.setVisible(true);
     }
 
-    private static JLabel getjLabel() {
-        // Load images for the logo
-        ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
-
-        // Create a JLabel for the logo
-        JLabel headLogo = new JLabel();
-        headLogo.setIcon(logo);
-
-        // Get the dimensions of the image
-        int widthLogo = logo.getIconWidth();
-        int heightLogo = logo.getIconHeight();
-
-        // Set the bounds of the label to the actual size of the image
-        headLogo.setBounds(0, 15, widthLogo, heightLogo);
-
-        return headLogo;
-    }
     private JButton getBackButton(){
 
         JButton backButton = new JButton();
@@ -159,7 +148,12 @@ public class ResetPass {
         private final JTextField email;
         private final JButton backButton;
 
-        ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton submitButton, JTextArea resetPass, JTextArea emailMessage, JLabel emailLabel, JTextField email, JButton backButton) {
+        private final JButton homeButton;
+        private final JButton menuButton;
+
+        private final JButton shopCartButton;
+
+        ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton submitButton, JTextArea resetPass, JTextArea emailMessage, JLabel emailLabel, JTextField email, JButton backButton, JButton homeButton, JButton menuButton, JButton shopCartButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
@@ -169,6 +163,9 @@ public class ResetPass {
             this.emailLabel = emailLabel;
             this.email = email;
             this.backButton = backButton;
+            this.homeButton = homeButton;
+            this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
         }
 
         @Override
@@ -176,12 +173,28 @@ public class ResetPass {
             int frameWidth = e.getComponent().getWidth();
             int frameHeight = e.getComponent().getHeight();
 
+
             // Adjust header size
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
-            // Adjust lower section size
-            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
+
+            // Move buttons alongside the logo
+            int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
+
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
+
 
             // Adjust button positions
             resetPass.setBounds((int) (2 * frameWidth / 9), (frameHeight / 8), (int) (frameWidth / 1.8), frameHeight / 7);
