@@ -29,7 +29,7 @@ public class ResetPass {
         JButton submitButton = getSubmitButton();
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
-        JButton shopCartButton = MethodFactory.getShopCartButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton(frame);
 
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);

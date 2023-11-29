@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Sprint 2:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="Sprint 2.jar">
+      <element id="module-output" name="Sprint 2" />
+    </root>
+  </artifact>
+</component>

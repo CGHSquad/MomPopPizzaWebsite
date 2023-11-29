@@ -60,7 +60,7 @@ public class MethodFactory {
         return menuButton;
     }
 
-    public static JButton getShopCartButton() {
+    public static JButton getShopCartButton(JFrame frame) {
         // Load image for the shopCart
         ImageIcon shopCartIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/ShoppingCart.png");
 
@@ -68,10 +68,15 @@ public class MethodFactory {
         JButton shopCartButton = getjButton(shopCartIcon);
 
         // Add an ActionListener to handle button clicks
-        shopCartButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("ShopCart button clicked");
-        });
+            shopCartButton.addActionListener(e -> {
+                //used to close current frame
+                if (frame != null) {
+                    frame.dispose();
+                }
+
+                DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
+                dcs.CreateWindow();
+            });
 
         return shopCartButton;
     }

@@ -24,7 +24,7 @@ public class DefaultCheckoutScreen {
         JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
-        JButton shopCartButton = MethodFactory.getShopCartButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton(frame);
 
         JButton backButton = getBackButton();
 
@@ -108,35 +108,37 @@ public class DefaultCheckoutScreen {
         frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton, homeButton, menuButton, shopCartButton));
     }
 
-    private static JButton getDeliveredButton() {
+    private JButton getDeliveredButton() {
 
         JButton deliveredButton = new JButton("Delivery");
         deliveredButton.setForeground(new Color(58, 34, 32));
 
-        ///guestButton.setBounds(450, 170, 200, 75);
         deliveredButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Submitted");
+            this.frame.dispose();
+
+            CheckoutScreenDelivery csd = new CheckoutScreenDelivery();
+            csd.CreateWindow();
+
         });
 
         return deliveredButton;
     }
 
-    private static JButton getPickUpButton() {
+    private JButton getPickUpButton() {
 
         JButton pickUpButton = new JButton("Pick Up");
         pickUpButton.setForeground(new Color(58, 34, 32));
 
-        ///guestButton.setBounds(450, 170, 200, 75);
         pickUpButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Submitted");
+
+            System.out.println("Pick Up Details: 830 Polytechnic lane, suite 320\n" +
+                    "Marietta, Ga");
         });
 
         return pickUpButton;
     }
 
-    private static JButton getItemButton() {
+    private JButton getItemButton() {
 
         JButton addMoreItemsButton = new JButton("Add More Items");
         addMoreItemsButton.setForeground(Color.WHITE);
@@ -146,15 +148,16 @@ public class DefaultCheckoutScreen {
         addMoreItemsButton.setBorderPainted(false);
         addMoreItemsButton.setOpaque(true);
 
-        ///guestButton.setBounds(450, 170, 200, 75);
         addMoreItemsButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Submitted");
+            this.frame.dispose();
+
+            Menu m = new Menu();
+            m.CreateWindow();
         });
 
         return addMoreItemsButton;
     }
-    private static JButton getPaymentButton() {
+    private JButton getPaymentButton() {
 
         JButton paymentButton = new JButton("Payment");
         paymentButton.setForeground(Color.WHITE);
@@ -164,10 +167,11 @@ public class DefaultCheckoutScreen {
         paymentButton.setBorderPainted(false);
         paymentButton.setOpaque(true);
 
-        ///guestButton.setBounds(450, 170, 200, 75);
         paymentButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Submitted");
+            this.frame.dispose();
+
+            PaymentScreen ps = new PaymentScreen();
+            ps.CreateWindow();
         });
 
         return paymentButton;

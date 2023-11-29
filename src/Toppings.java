@@ -25,7 +25,7 @@ public class Toppings {
         JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
-        JButton shopCartButton = MethodFactory.getShopCartButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton(frame);
 
         JButton backButton = getBackButton();
 
@@ -129,7 +129,6 @@ public class Toppings {
         backButton.addActionListener(e -> {
             this.frame.dispose();
 
-            // Add your logic for handling shopCart button clicks here
             Menu me = new Menu();
             me.CreateWindow();
         });

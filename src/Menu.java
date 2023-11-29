@@ -22,7 +22,7 @@ public class Menu {
         JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
-        JButton shopCartButton = MethodFactory.getShopCartButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton(frame);
 
         //CREATE YOUR OWN PIZZA TEXT
         JLabel text = getYouText("CREATE YOUR OWN PIZZA");

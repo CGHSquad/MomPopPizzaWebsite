@@ -24,7 +24,7 @@ public class PaymentScreen extends DefaultCheckoutScreen{
         JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
-        JButton shopCartButton = MethodFactory.getShopCartButton();
+        JButton shopCartButton = MethodFactory.getShopCartButton(frame);
 
         JButton backButton = getBackButton();
 
@@ -68,17 +68,17 @@ public class PaymentScreen extends DefaultCheckoutScreen{
         JTextField expirationField = new JTextField("Expiration Date");
         JTextField cvvField = new JTextField("CVV");
 
-        cardholderLabel.setBounds(15, 50, 150, 40);
-        billingAddressLabel.setBounds(15, 100, 150, 40);
-        creditCardLabel.setBounds(15, 150, 150, 40);
-        expirationLabel.setBounds(15, 200, 150, 40);
-        cvvLabel.setBounds(15, 250, 150, 40);
+        cardholderLabel.setBounds(15, 100, 150, 40);
+        billingAddressLabel.setBounds(15, 150, 150, 40);
+        creditCardLabel.setBounds(15, 200, 150, 40);
+        expirationLabel.setBounds(15, 250, 150, 40);
+        cvvLabel.setBounds(15, 300, 150, 40);
 
-        cardholderField.setBounds(175, 50, 200, 40);
-        billingAddressField.setBounds(175, 100, 200, 40);
-        creditCardField.setBounds(175, 150, 200, 40);
-        expirationField.setBounds(175, 200, 200, 40);
-        cvvField.setBounds(175, 250, 200, 40);
+        cardholderField.setBounds(175, 100, 200, 40);
+        billingAddressField.setBounds(175, 150, 200, 40);
+        creditCardField.setBounds(175, 200, 200, 40);
+        expirationField.setBounds(175, 250, 200, 40);
+        cvvField.setBounds(175, 300, 200, 40);
 
         // Add components to the lwrSection panel
         lwrSection.add(grayPanel);
@@ -100,7 +100,7 @@ public class PaymentScreen extends DefaultCheckoutScreen{
         frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton, homeButton, menuButton, shopCartButton));
     }
 
-    private static JButton getPlaceOrderButton() {
+    private JButton getPlaceOrderButton() {
 
         JButton placeOrderButton = new JButton("PLACE ORDER");
         placeOrderButton.setForeground(Color.WHITE);
@@ -112,8 +112,11 @@ public class PaymentScreen extends DefaultCheckoutScreen{
 
         ///guestButton.setBounds(450, 170, 200, 75);
         placeOrderButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Submitted");
+            this.frame.dispose();
+
+            order_Success os = new order_Success();
+            os.CreateWindow();
+
         });
 
         return placeOrderButton;

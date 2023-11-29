@@ -2,8 +2,8 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        //FrontEnd fe = new FrontEnd();
-        //fe.CreateWindow();
+        FrontEnd fe = new FrontEnd();
+        fe.CreateWindow();
 
         //ResetPass rp = new ResetPass();
         //rp.CreateWindow();
@@ -26,11 +26,11 @@ public class Main {
         //order_Success os = new order_Success();
         //os.CreateWindow();
 
-        DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
-        dcs.CreateWindow();
+        //DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
+        //dcs.CreateWindow();
 
-        GuestCheckoutScreen gcs = new GuestCheckoutScreen();
-        gcs.CreateWindow();
+        //GuestCheckoutScreen gcs = new GuestCheckoutScreen();
+        //gcs.CreateWindow();
 
         //PaymentScreen pms = new PaymentScreen();
         //pms.CreateWindow();
