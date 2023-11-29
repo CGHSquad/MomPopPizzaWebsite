@@ -4,7 +4,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class CheckoutScreenDelivery extends CheckoutScreen {
+public class CheckoutScreenDelivery extends DefaultCheckoutScreen {
     private JFrame frame;
 
     public void CreateWindow() {

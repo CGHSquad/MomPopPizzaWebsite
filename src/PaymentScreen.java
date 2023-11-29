@@ -4,7 +4,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class PaymentScreen extends CheckoutScreen{
+public class PaymentScreen extends DefaultCheckoutScreen{
     private JFrame frame;
 
     public void CreateWindow() {
@@ -136,8 +136,8 @@ public class PaymentScreen extends CheckoutScreen{
             this.frame.dispose();
 
             // Add your logic for handling shopCart button clicks here
-            FrontEnd fe = new FrontEnd();
-            fe.CreateWindow();
+            DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
+            dcs.CreateWindow();
         });
 
         return backButton;

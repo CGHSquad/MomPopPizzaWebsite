@@ -4,7 +4,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class CheckoutScreen {
+public class DefaultCheckoutScreen {
     private JFrame frame;
 
     public void CreateWindow() {
@@ -73,33 +73,33 @@ public class CheckoutScreen {
         grayPanel.add(paymentButton);
 
         // Text fields for delivery details
-        JLabel addressLabel = new JLabel("Address:");
-        JLabel cityLabel = new JLabel("City:");
-        JLabel zipCodeLabel = new JLabel("Zip Code:");
+        JLabel nameLabel = new JLabel("Name:");
+        JLabel emailLabel = new JLabel("Email:");
+        JLabel phoneLabel = new JLabel("Phone Number:");
 
-        addressLabel.setBounds(15, 180, 100, 20);
-        cityLabel.setBounds(15, 210, 100, 20);
-        zipCodeLabel.setBounds(15, 240, 100, 20);
+        nameLabel.setBounds(15, 180, 100, 20);
+        emailLabel.setBounds(15, 210, 100, 20);
+        phoneLabel.setBounds(15, 240, 100, 20);
 
-        JTextField addressField = new JTextField("Delivery Address");
-        JTextField cityField = new JTextField("City");
-        JTextField zipCodeField = new JTextField("Zip Code");
+        JTextField nameField = new JTextField("Name");
+        JTextField emailField = new JTextField("Email");
+        JTextField phoneField = new JTextField("Phone Number");
 
-        addressField.setBounds(115, 180, 200, 20);
-        cityField.setBounds(115, 210, 200, 20);
-        zipCodeField.setBounds(115, 240, 200, 20);
+        nameField.setBounds(115, 180, 200, 20);
+        emailField.setBounds(115, 210, 200, 20);
+        phoneField.setBounds(115, 240, 200, 20);
 
         // Add components to the lwrSection panel
         lwrSection.add(checkoutLabel);
         lwrSection.add(pickUpButton);
         lwrSection.add(deliveredButton);
         lwrSection.add(grayPanel);
-        lwrSection.add(addressLabel);
-        lwrSection.add(cityLabel);
-        lwrSection.add(zipCodeLabel);
-        lwrSection.add(addressField);
-        lwrSection.add(cityField);
-        lwrSection.add(zipCodeField);
+        lwrSection.add(nameLabel);
+        lwrSection.add(emailLabel);
+        lwrSection.add(phoneLabel);
+        lwrSection.add(nameField);
+        lwrSection.add(emailField);
+        lwrSection.add(phoneField);
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

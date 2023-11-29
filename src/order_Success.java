@@ -84,8 +84,8 @@ public class order_Success {
             this.frame.dispose();
 
             // Add your logic for handling shopCart button clicks here
-            CheckoutScreen cs = new CheckoutScreen();
-            cs.CreateWindow();
+            DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
+            dcs.CreateWindow();
         });
 
         return backButton;

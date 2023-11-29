@@ -26,8 +26,8 @@ public class Main {
         //order_Success os = new order_Success();
         //os.CreateWindow();
 
-        CheckoutScreen cs = new CheckoutScreen();
-        cs.CreateWindow();
+        DefaultCheckoutScreen dcs = new DefaultCheckoutScreen();
+        dcs.CreateWindow();
 
         GuestCheckoutScreen gcs = new GuestCheckoutScreen();
         gcs.CreateWindow();
