@@ -18,7 +18,10 @@ public class MenuSides  extends Menu{
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
         //SIDES Text
         JLabel sidesText = getYouText("SIDES");
@@ -62,6 +65,9 @@ public class MenuSides  extends Menu{
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
+        header.add(menuButton);
+        header.add(homeButton);
+        header.add(shopCartButton);
         lwrSection.add(backButton);
         lwrSection.add(sidesText);
         lwrSection.add(pizzaButton);
@@ -79,7 +85,7 @@ public class MenuSides  extends Menu{
         frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton, sidesText,
                 pizzaButton,sidesButton, drinksButton,box1,box2,box3,breadStickLabel, breadBites, cookie,
                 BreadStick, BreadSticksBites, ChocolateChip,orderNowButtonBreadStick,orderNowButtonBreadBites,orderNowButtonCookie,
-                whiteBox1,whiteBox2,whiteBox3));
+                whiteBox1,whiteBox2,whiteBox3, homeButton, menuButton, shopCartButton));
 
         frame.setVisible(true);
 
@@ -89,11 +95,11 @@ public class MenuSides  extends Menu{
         ImageIcon sideIcon = null;
         //load Images for each one
         if(side.equals("Bread Stick")){
-            sideIcon = new ImageIcon("images/BreadStick.PNG");
+            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/BreadStick.PNG");
         } else if (side.equals("Bread Stick Bites")) {
-            sideIcon = new ImageIcon("images/BreadStickBites.jpg");
+            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/BreadStickBites.jpg");
         } else if (side.equals("Cookies")) {
-            sideIcon = new ImageIcon("images/cokie.PNG");
+            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/cokie.PNG");
         }
         Image originalImage = sideIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(120,100,Image.SCALE_SMOOTH);
@@ -165,7 +171,7 @@ public class MenuSides  extends Menu{
         private final JPanel lwrSection;
         private final JLabel headLogo;
         private final JButton pizzaButton, sidesButton,drinksButton, backButton,
-                orderNowBreadStick, ordernowBreadStickBites, ordernowCookie;
+                orderNowBreadStick, ordernowBreadStickBites, ordernowCookie, homeButton, menuButton, shopCartButton;
         private final JPanel box1,box2,box3,whiteBox1, whiteBox2, whiteBox3;
 
         private final JLabel sidesText, breadStickLabel, breadStickBitesLabel, cookieLabel, breadStickImg, breadSickBitesImg, cookieImg ;
@@ -175,7 +181,8 @@ public class MenuSides  extends Menu{
                        JLabel breadStickLabel, JLabel breadStickBitesLabel, JLabel cookieLabel,
                        JLabel breadStickImg, JLabel breadSickBitesImg, JLabel cookieImg,
                        JButton orderNowBreadStick, JButton ordernowBreadStickBites, JButton ordernowCookie,
-                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3) {
+                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3,
+                       JButton homeButton, JButton menuButton, JButton shopCartButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
@@ -199,6 +206,9 @@ public class MenuSides  extends Menu{
             this.whiteBox1 = whiteBox1;
             this.whiteBox2 = whiteBox2;
             this.whiteBox3 = whiteBox3;
+            this.homeButton = homeButton;
+            this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
         }
 
         @Override
@@ -210,9 +220,23 @@ public class MenuSides  extends Menu{
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
-            // Adjust lower section size
-            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
+
+            //Makes the buttons move alongside the logo
+            int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
+
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
 
             //buttons
             backButton.setBounds(15, 30, (frameWidth / 6), frameHeight / 9);
@@ -222,36 +246,36 @@ public class MenuSides  extends Menu{
             drinksButton.setBounds(15,200,(75), 40);
 
             //orderNow
-            orderNowBreadStick.setBounds(200,250,150,40);
-            ordernowBreadStickBites.setBounds(400,250,150,40);
-            ordernowCookie.setBounds(600,250,150,40);
+            orderNowBreadStick.setBounds(200,270,150,40);
+            ordernowBreadStickBites.setBounds(400,270,150,40);
+            ordernowCookie.setBounds(600,270,150,40);
 
             //box -> BreadStick
             box1.setBounds(200,100,150, 160);
-            box1.add(whiteBox1);
+            //box1.add(whiteBox1);
             whiteBox1.setBounds(7,35,135,120);
             box1.add(breadStickLabel);
             breadStickLabel.setBounds(50,0,75,40);
-            whiteBox1.add(breadStickImg);
+            box1.add(breadStickImg);
             breadStickImg.setBounds(10, 15,120,100);
 
 
             //box2 -> BreadStickBites
             box2.setBounds(400,100,150, 160);
-            box2.add(whiteBox2);
+            //box2.add(whiteBox2);
             whiteBox2.setBounds(7,35,135,120);
             box2.add(breadStickBitesLabel);
             breadStickBitesLabel.setBounds(30,0,95,40);
-            whiteBox2.add(breadSickBitesImg);
+            box2.add(breadSickBitesImg);
             breadSickBitesImg.setBounds(10, 15,120,100);
 
             //box3 -> Cookie
             box3.setBounds(600,100,150, 160);
-            box3.add(whiteBox3);
+            //box3.add(whiteBox3);
             whiteBox3.setBounds(7,35,135,120);
             box3.add(cookieLabel);
             cookieLabel.setBounds(50,0,75,40);
-            whiteBox3.add(cookieImg);
+            box3.add(cookieImg);
             cookieImg.setBounds(10, 15,120,100);
 
 

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MethodFactory {
-
     public static JLabel createLogoLabel(String imagePath) {
         ImageIcon logo = new ImageIcon(imagePath);
 
@@ -17,7 +16,7 @@ public class MethodFactory {
         return logoLabel;
     }
 
-    public static JButton getHomeButton() {
+    public static JButton getHomeButton(JFrame frame) {
         JButton homeButton = new JButton("Home");
 
         homeButton.setForeground(Color.WHITE);
@@ -26,11 +25,20 @@ public class MethodFactory {
         homeButton.setContentAreaFilled(true);
         homeButton.setBorderPainted(false);
         homeButton.setOpaque(true);
-        // Add your action listener for the home button here
+        // Button used to get back home/frontend page
+        homeButton.addActionListener(e -> {
+            //used to close current frame
+            if (frame != null) {
+                frame.dispose();
+            }
+
+            FrontEnd fe = new FrontEnd();
+            fe.CreateWindow();
+        });
         return homeButton;
     }
 
-    public static JButton getMenuButton() {
+    public static JButton getMenuButton(JFrame frame) {
         JButton menuButton = new JButton("Menu");
 
         menuButton.setForeground(Color.WHITE);
@@ -39,7 +47,16 @@ public class MethodFactory {
         menuButton.setContentAreaFilled(true);
         menuButton.setBorderPainted(false);
         menuButton.setOpaque(true);
-        // Add your action listener for the menu button here
+        //Button used to get to Menu
+        menuButton.addActionListener(e -> {
+            //used to close current frame
+            if (frame != null) {
+                frame.dispose();
+            }
+
+            Menu m = new Menu();
+            m.CreateWindow();
+        });
         return menuButton;
     }
 
@@ -97,8 +114,17 @@ public class MethodFactory {
         shopCartButton.setBounds(shopCartX, shopCartY, widthCart, heightCart);
     }
 
+    public static ImageIcon resizeMenuImage(String imagePath, int targetWidth, int targetHeight) {
+        ImageIcon originalIcon = new ImageIcon(imagePath);
+        int originalWidth = originalIcon.getIconWidth();
+        int originalHeight = originalIcon.getIconHeight();
 
+        int scaledWidth = (int) (targetWidth / 4.5);  // Adjust the divisor as needed
+        int scaledHeight = (int) (scaledWidth * ((double) originalHeight / originalWidth));
 
+        Image scaledImage = originalIcon.getImage().getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
 
-    // Add more methods for creating other components if needed
+        return new ImageIcon(scaledImage);
+    }
+
 }

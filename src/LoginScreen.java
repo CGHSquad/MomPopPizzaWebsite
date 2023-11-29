@@ -45,7 +45,7 @@ public class LoginScreen {
 
     // Function to create and configure the JButton for the shopCart
 
-    private static JButton getCustomerButton() {
+    private JButton getCustomerButton() {
         ImageIcon loginIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\LoginBrown.png");
 
         Image image = loginIcon.getImage();
@@ -69,8 +69,10 @@ public class LoginScreen {
 
         ///loginButton.setBounds(150, 170, 200, 75);
         customerButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Customer button clicked");
+            this.frame.dispose();
+
+            LoginPage lp = new LoginPage();
+            lp.CreateWindow();
         });
 
         return customerButton;

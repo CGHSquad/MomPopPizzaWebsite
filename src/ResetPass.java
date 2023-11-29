@@ -27,8 +27,8 @@ public class ResetPass {
         JLabel emailLabel = getEmailLabel();
         JButton backButton = getBackButton();
         JButton submitButton = getSubmitButton();
-        JButton homeButton = MethodFactory.getHomeButton();
-        JButton menuButton = MethodFactory.getMenuButton();
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton();
 
         frame.add(header, BorderLayout.NORTH);
@@ -67,9 +67,8 @@ public class ResetPass {
         backButton.addActionListener(e -> {
             this.frame.dispose();
 
-            // Add your logic for handling shopCart button clicks here
-            FrontEnd fe = new FrontEnd();
-            fe.CreateWindow();
+            LoginPage lp = new LoginPage();
+            lp.CreateWindow();
         });
 
         return backButton;

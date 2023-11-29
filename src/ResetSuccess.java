@@ -27,8 +27,8 @@ public class ResetSuccess {
         JLabel enterCode = getEnterCode();
         JButton backButton = getBackButton();
         JButton submitButton = getSubmitButton();
-        JButton homeButton = MethodFactory.getHomeButton();
-        JButton menuButton = MethodFactory.getMenuButton();
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton();
 
         frame.add(header, BorderLayout.NORTH);

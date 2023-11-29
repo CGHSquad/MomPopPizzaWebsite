@@ -117,7 +117,8 @@ public class FrontEnd {
 
         return loginButton;
     }
-    private static JButton getGuestButton() {
+    //Method for Guest Button which will send you to Menu
+    private JButton getGuestButton() {
 
         JButton guestButton = new JButton();
         guestButton.setText("Continue as a guest");
@@ -132,10 +133,11 @@ public class FrontEnd {
         guestButton.setBorderPainted(false);
         guestButton.setOpaque(true);
 
-        ///guestButton.setBounds(450, 170, 200, 75);
         guestButton.addActionListener(e -> {
-            // Add your logic for handling shopCart button clicks here
-            System.out.println("Guest button clicked");
+            this.frame.dispose();
+
+            Menu m = new Menu();
+            m.CreateWindow();
         });
 
         return guestButton;

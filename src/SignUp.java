@@ -5,82 +5,93 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class SignUp {
 
     private static JTextField emailText;
     private static JPasswordField passText;
-    public SignUp() {
-    }
 
+    private JFrame frame;
     public void CreateWindow() {
-        JFrame var1 = new JFrame("Mom and Pops Pizzeria");
-        JPanel var2 = new JPanel();
-        var2.setBackground(new Color(58, 34, 32));
-        var2.setPreferredSize(new Dimension(800, 100));
-        var2.setLayout((LayoutManager)null);
-        JPanel var3 = new JPanel(new GridBagLayout());
-        var3.setBackground(Color.WHITE);
-        var3.setPreferredSize(new Dimension(800, 400));
-        var3.setLayout((LayoutManager)null);
+        //panel for the brown header on top of the screen
+        frame = new JFrame("Mom and Pops Pizzeria");
+
+        JPanel header = new JPanel();
+        header.setBackground(new Color(58, 34, 32));
+        header.setPreferredSize(new Dimension(800, 100));
+        header.setLayout(null);
+
+        //panel for the white section of the screen
+        JPanel lwrSection = new JPanel(new GridBagLayout());
+        lwrSection.setBackground(Color.WHITE);
+        lwrSection.setPreferredSize(new Dimension(800, 400));
+        lwrSection.setLayout(null);
+
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
 
 
-        var1.add(var2, "North");
-        var1.add(var3, "South");
-        var2.add(getjLabel());
-        var2.add(getShopCartButton());
-        var2.add(getHomeLogo());
-        var2.add(getMenuButton());
-        var3.add(getBackButton());
-        var3.setPreferredSize(new Dimension(800, 400));
-        var3.setLayout((LayoutManager)null);
+        frame.add(header, BorderLayout.NORTH);
+        frame.add(lwrSection, BorderLayout.CENTER);
+        header.add(headLogo);
+        header.add(shopCartButton);
+        header.add(homeButton);
+        header.add(menuButton);
+        lwrSection.add(getBackButton());
+        lwrSection.setPreferredSize(new Dimension(800, 400));
+        lwrSection.setLayout(null);
 
         JLabel title = new JLabel("CREATE YOUR ACCOUNT");
         title.setFont(new Font("Arial", Font.BOLD, 24));
         title.setBounds(230,10,400,95);
-        var3.add(title);
+        lwrSection.add(title);
 
         JLabel label = new JLabel("First Name");
         label.setBounds(100,90,80,25);
-        var3.add(label);
+        lwrSection.add(label);
         JTextField FNameText = new JTextField(20);
         FNameText.setBounds(90, 110,265,25);
-        var3.add(FNameText);
+        lwrSection.add(FNameText);
 
         JLabel label2 = new JLabel("Last Name");
         label2.setBounds(400,90,80,25);
-        var3.add(label2);
+        lwrSection.add(label2);
         JTextField LNameText = new JTextField(20);
         LNameText.setBounds(390, 110,265,25);
-        var3.add(LNameText);
+        lwrSection.add(LNameText);
 
         JLabel label3 = new JLabel("Email");
         label3.setBounds(100,150,80,25);
-        var3.add(label3);
+        lwrSection.add(label3);
         emailText = new JTextField(20);
         emailText.setBounds(90, 170,265,25);
-        var3.add(emailText);
+        lwrSection.add(emailText);
 
         JLabel label4 = new JLabel("Phone Number");
         label4.setBounds(400,150,120,25);
-        var3.add(label4);
+        lwrSection.add(label4);
         JTextField phoneNumber = new JTextField(20);
         phoneNumber.setBounds(390, 170,265,25);
-        var3.add(phoneNumber);
+        lwrSection.add(phoneNumber);
 
         JLabel label5 = new JLabel("Password");
         label5.setBounds(100,210,80,25);
-        var3.add(label5);
+        lwrSection.add(label5);
         passText = new JPasswordField(20);
         passText.setBounds(90, 230,265,25);
-        var3.add(passText);
-        var3.add(getCreateYourAccountButton());
+        lwrSection.add(passText);
+        lwrSection.add(getCreateYourAccountButton());
 
 
-        var1.setSize(800, 500);
-        var1.setDefaultCloseOperation(3);
-        var1.setVisible(true);
+        frame.setSize(800, 500);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, getBackButton(), homeButton, menuButton, shopCartButton));
+        frame.setVisible(true);
 
     }
 
@@ -91,7 +102,7 @@ public class SignUp {
         String password = new String(passwordChars);
 
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/bho4/Downloads/user_credentials.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/user_credentials.txt", true))) {
             writer.write(email + "," + password);
             writer.newLine();
             writer.flush();
@@ -106,7 +117,7 @@ public class SignUp {
         passText.setText("");
     }
 
-    private static JButton getBackButton() {
+    private JButton getBackButton() {
         JButton backButton = new JButton("←Back");
         backButton.setBounds(20, 40, 100,35);
         backButton.setForeground(new Color(58, 34, 32));
@@ -115,44 +126,17 @@ public class SignUp {
         backButton.setContentAreaFilled(false);
         backButton.setBorderPainted(false);
         backButton.setOpaque(true);
-        backButton.addActionListener((var0x) -> {
-            System.out.println("Back button clicked");
+        backButton.addActionListener(e -> {
+            this.frame.dispose();
+
+            LoginPage lp = new LoginPage();
+            lp.CreateWindow();
         });
         return backButton;
     }
 
-    private static JButton getHomeLogo() {
-        ImageIcon var0 = new ImageIcon("/Users/bho4/Downloads/HomeLogo.png");
-        JButton var1 = new JButton();
-        var1.setIcon(var0);
-        var1.setFocusPainted(false);
-        var1.setContentAreaFilled(false);
-        var1.setBorderPainted(false);
-        int var2 = var0.getIconWidth();
-        int var3 = var0.getIconHeight();
-        var1.setBounds(250, 40, var2, var3);
-        var1.addActionListener((var0x) -> {
-            System.out.println("Home logo clicked");
-        });
-        return var1;
-    }
-
-    private static JButton getMenuButton() {
-        JButton var1 = new JButton("Menu");
-        var1.setFocusPainted(false);
-        var1.setContentAreaFilled(false);
-        var1.setBorderPainted(false);
-        var1.setForeground(Color.WHITE);
-        var1.setBounds(280, 5, 80, 105);
-        var1.addActionListener((var0x) -> {
-            System.out.println("Menu button clicked");
-        });
-        return var1;
-    }
-
-
     private static JButton getCreateYourAccountButton() {
-        ImageIcon var0 = new ImageIcon("/Users/bho4/Downloads/createAccount.png");
+        ImageIcon var0 = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/createaccount.png");
         JButton var1 = new JButton();
         var1.setIcon(var0);
         var1.setFocusPainted(false);
@@ -160,40 +144,68 @@ public class SignUp {
         var1.setBorderPainted(false);
         int var2 = var0.getIconWidth();
         int var3 = var0.getIconHeight();
-        var1.setBounds(260, 280, var2 - 30, var3 - 30);
-        var1.addActionListener((var0x) -> {
-            signUp();
-        });
+        var1.setBounds(190, 280, var2 - 50, var3 - 50);
+        var1.addActionListener((var0x) -> signUp());
         return var1;
     }
 
-    private static JButton getShopCartButton() {
-        ImageIcon var0 = new ImageIcon("/Users/bho4/Downloads/ShoppingCart.png");
-        JButton var1 = new JButton();
-        var1.setIcon(var0);
-        var1.setFocusPainted(false);
-        var1.setContentAreaFilled(false);
-        var1.setBorderPainted(false);
-        int var2 = var0.getIconWidth();
-        int var3 = var0.getIconHeight();
-        var1.setBounds(700, 25, var2, var3);
-        var1.addActionListener((var0x) -> {
-            System.out.println("ShopCart button clicked");
-        });
-        return var1;
+    private static class ResizeListener extends ComponentAdapter {
+        private final JPanel header;
+        private final JPanel lwrSection;
+        private final JLabel headLogo;
+
+        private final JButton backButton;
+
+        private final JButton homeButton;
+        private final JButton menuButton;
+
+        private final JButton shopCartButton;
+
+        ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton backButton, JButton homeButton, JButton menuButton, JButton shopCartButton) {
+            this.header = header;
+            this.lwrSection = lwrSection;
+            this.headLogo = headLogo;
+            this.backButton = backButton;
+            this.homeButton = homeButton;
+            this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
+        }
+
+        @Override
+        public void componentResized(ComponentEvent e) {
+            int frameWidth = e.getComponent().getWidth();
+            int frameHeight = e.getComponent().getHeight();
+
+
+            // Adjust header size
+            header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
+            // Stretched icon for logo
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
+
+            // Move buttons alongside the logo
+            int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
+
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
+
+
+            // Adjust button positions
+            backButton.setBounds(15, 30, (frameWidth / 6), frameHeight / 9);
+
+            // Dynamically adjust font sizes based on frame height
+        }
     }
 
-
-
-    private static JLabel getjLabel() {
-        ImageIcon var0 = new ImageIcon("/Users/bho4/Downloads/logo.png");
-        JLabel var1 = new JLabel();
-        var1.setIcon(var0);
-        int var2 = var0.getIconWidth();
-        int var3 = var0.getIconHeight();
-        var1.setBounds(0, 18, var2, var3);
-        return var1;
-    }
 }
 
 

@@ -18,19 +18,22 @@ public class MenuDrinks extends Menu{
         lwrSection.setPreferredSize(new Dimension(800, 500));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
         //Drinks Text
         JLabel drinksText = getYouText("PEPSI BEVERAGES");
         //images
-        JLabel pepsiImg = getImages("images/pepsi.PNG",40,70);
-        JLabel pepsiDietImg = getImages("images/pepsi_diet.PNG",60,70); // not same size
-        JLabel pepsiOrangeImg = getImages("images/pepsi_orange.PNG",40,70);
-        JLabel pepsiOrangeDietImg = getImages("images/pepsi_orange.PNG",40,70);
-        JLabel rootBeerImg = getImages("images/root_beer.PNG",40,70);
-        JLabel rootBeerDietImg = getImages("images/root_beer.PNG",40,70);
-        JLabel starryImg= getImages("images/starry.PNG",40,70);
-        JLabel lemonadeImg = getImages("images/Lemonade.jpg",40,70);
+        JLabel pepsiImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi.PNG",40,70);
+        JLabel pepsiDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_diet.PNG",60,70); // not same size
+        JLabel pepsiOrangeImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_orange.PNG",40,70);
+        JLabel pepsiOrangeDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_orange.PNG",40,70);
+        JLabel rootBeerImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/root_beer.PNG",40,70);
+        JLabel rootBeerDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/root_beer.PNG",40,70);
+        JLabel starryImg= getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/starry.PNG",40,70);
+        JLabel lemonadeImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Lemonade.jpg",40,70);
 
 
         //buttons
@@ -85,6 +88,9 @@ public class MenuDrinks extends Menu{
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
+        header.add(menuButton);
+        header.add(homeButton);
+        header.add(shopCartButton);
         lwrSection.add(backButton);
         lwrSection.add(drinksText);
         lwrSection.add(pizzaButton);
@@ -110,7 +116,7 @@ public class MenuDrinks extends Menu{
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton,pizzaButton,sidesButton, drinksButton,box1,box2,box3,box4,box5,box6,box7,box8,pepsiText,pepsiDietText,OrangeText,OrangeDietText,beerText,beerDietText,starryText,lemonadeText,pepsiImg,pepsiDietImg,pepsiOrangeImg,pepsiOrangeDietImg,rootBeerImg,rootBeerDietImg,starryImg,lemonadeImg,addPepsi,addPepsiDiet,addOrange,addOrangeDiet,addBeer,addBeerDiet,addStarry,addLemonade,whiteBox1,whiteBox2,whiteBox3,whiteBox4,whiteBox5,whiteBox6,whiteBox7,whiteBox8,drinksText));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton,pizzaButton,sidesButton, drinksButton,box1,box2,box3,box4,box5,box6,box7,box8,pepsiText,pepsiDietText,OrangeText,OrangeDietText,beerText,beerDietText,starryText,lemonadeText,pepsiImg,pepsiDietImg,pepsiOrangeImg,pepsiOrangeDietImg,rootBeerImg,rootBeerDietImg,starryImg,lemonadeImg,addPepsi,addPepsiDiet,addOrange,addOrangeDiet,addBeer,addBeerDiet,addStarry,addLemonade,whiteBox1,whiteBox2,whiteBox3,whiteBox4,whiteBox5,whiteBox6,whiteBox7,whiteBox8,drinksText, homeButton, menuButton, shopCartButton));
 
         frame.setVisible(true);
     }
@@ -194,7 +200,7 @@ public class MenuDrinks extends Menu{
         private final JPanel lwrSection;
         private final JLabel headLogo;
         private final JButton pizzaButton, sidesButton, drinksButton, backButton,
-                addPepsi, addPepsiDiet,  addOrange,  addOrangeDiet,  addBeer,  addBeerDiet,  addStarry,  addLemonade;
+                addPepsi, addPepsiDiet,  addOrange,  addOrangeDiet,  addBeer,  addBeerDiet,  addStarry,  addLemonade, homeButton, menuButton, shopCartButton;
         private final  JPanel box1,  box2,  box3,  box4,  box5,  box6, box7,  box8,
          whiteBox1,  whiteBox2,  whiteBox3,  whiteBox4,  whiteBox5,  whiteBox6,  whiteBox7,  whiteBox8;
         private final  JLabel drinksText, pepsiText,  pepsiDietText,  orangeText,  orangeDietText,  beerText,  beerDietText,  starryText,  lemonadeText,
@@ -207,7 +213,8 @@ public class MenuDrinks extends Menu{
                        JLabel pepsiText, JLabel pepsiDietText, JLabel orangeText, JLabel orangeDietText, JLabel beerText, JLabel beerDietText, JLabel starryText, JLabel lemonadeText,
                        JLabel pepsiImg, JLabel pepsiDietImg, JLabel orangeImg, JLabel orangeDietImg, JLabel beerImg, JLabel beerDietImg, JLabel starryImg, JLabel lemonadeImg,
                        JButton addPepsi,JButton addPepsiDiet, JButton addOrange, JButton addOrangeDiet, JButton addBeer, JButton addBeerDiet, JButton addStarry, JButton addLemonade,
-                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3, JPanel whiteBox4, JPanel whiteBox5, JPanel whiteBox6, JPanel whiteBox7, JPanel whiteBox8,JLabel drinksText) {
+                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3, JPanel whiteBox4, JPanel whiteBox5, JPanel whiteBox6, JPanel whiteBox7, JPanel whiteBox8,JLabel drinksText,
+                       JButton homeButton, JButton menuButton, JButton shopCartButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
@@ -256,6 +263,9 @@ public class MenuDrinks extends Menu{
             this.whiteBox7 = whiteBox7;
             this.whiteBox8 = whiteBox8;
             this.drinksText = drinksText;
+            this.homeButton = homeButton;
+            this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
 
         }
 
@@ -268,9 +278,23 @@ public class MenuDrinks extends Menu{
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
-            // Adjust lower section size
-            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
+
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+            int logoX = 5;
+            int logoY = 10;
+
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
+
+            //Makes the buttons move alongside the logo
+            int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
+
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
 
 
             //buttons
@@ -323,7 +347,7 @@ public class MenuDrinks extends Menu{
             box5.add(beerText);
             beerText.setBounds(40,0,65,20);
             whiteBox5.add(beerImg);
-            beerImg.setBounds(35,5,40,70);;
+            beerImg.setBounds(35,5,40,70);
             //box6
             box6.setBounds(340,240,120, 120);
             box6.add(whiteBox6);

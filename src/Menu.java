@@ -19,7 +19,10 @@ public class Menu {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = getjLabel();
+        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JButton homeButton = MethodFactory.getHomeButton(frame);
+        JButton menuButton = MethodFactory.getMenuButton(frame);
+        JButton shopCartButton = MethodFactory.getShopCartButton();
 
         //CREATE YOUR OWN PIZZA TEXT
         JLabel text = getYouText("CREATE YOUR OWN PIZZA");
@@ -59,6 +62,9 @@ public class Menu {
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
+        header.add(menuButton);
+        header.add(homeButton);
+        header.add(shopCartButton);
         lwrSection.add(backButton);
         lwrSection.add(text);
         lwrSection.add(pizzaButton);
@@ -73,9 +79,9 @@ public class Menu {
 
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo,backButton, text, pizzaButton,
-                sidesButton, drinksButton,box1,box2,box3, thin, regular, pan, pizzaImg, pizzaImg2,pizzaImg3,orderNowButtonThin,orderNowButtonRegular,orderNowButtonPan,
-                whiteBox1,whiteBox2,whiteBox3));
+        frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, backButton, text, pizzaButton,
+                sidesButton, drinksButton, box1, box2, box3, thin, regular, pan, pizzaImg, pizzaImg2, pizzaImg3, orderNowButtonThin, orderNowButtonRegular, orderNowButtonPan,
+                whiteBox1, whiteBox2, whiteBox3, homeButton, menuButton, shopCartButton));
 
         frame.setVisible(true);
 
@@ -97,34 +103,15 @@ public class Menu {
 
         return label;
     }
-    protected   JLabel getjLabel() {
-        // Load images for the logo
-        ImageIcon logo = new ImageIcon("images/logo.png");
-
-        // Create a JLabel for the logo
-        JLabel headLogo = new JLabel();
-        headLogo.setIcon(logo);
-
-        // Get the dimensions of the image
-        int widthLogo = logo.getIconWidth();
-        int heightLogo = logo.getIconHeight();
-
-        // Set the bounds of the label to the actual size of the image
-        headLogo.setBounds(0, 15, widthLogo, heightLogo);
-
-        return headLogo;
-    }
     private  JLabel getPizzaImg() {
         // Load images
-        ImageIcon pizzaIcon = new ImageIcon("images/pizzaImg.PNG");
+        ImageIcon pizzaIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pizzaImg.PNG");
         Image originalImage = pizzaIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(120,100,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(resizedImage);
         // Create a JLabel
         JLabel pizzaImg = new JLabel();
         pizzaImg.setIcon(icon);
-
-
 
         return pizzaImg;
     }
@@ -168,15 +155,25 @@ public class Menu {
 
         orderNow.addActionListener(e -> {
            // GO to order Screen
-            if(crust.equals("Thin")){
-                //select thin crust
-                System.out.println("Thin Crust Selected");
-            }else if(crust.equals("Regular")){
-                //select regular crust
-                System.out.println("Regular Crust Selected");
-            }else if(crust.equals("Pan")){
-                //select regular crust
-                System.out.println("Pan Crust Selected");
+            switch (crust) {
+                case "Thin" -> {
+                    //select thin crust
+                    this.frame.dispose();
+                    Toppings tp = new Toppings();
+                    tp.CreateWindow();
+                }
+                case "Regular" -> {
+                    //select regular crust
+                    this.frame.dispose();
+                    Toppings tp = new Toppings();
+                    tp.CreateWindow();
+                }
+                case "Pan" -> {
+                    //select regular crust
+                    this.frame.dispose();
+                    Toppings tp = new Toppings();
+                    tp.CreateWindow();
+                }
             }
         });
 
@@ -287,7 +284,8 @@ public class Menu {
         private final JLabel headLogo;
 
         private final JButton pizzaButton, sidesButton, drinksButton, backButton,
-                OrderNowThin,OrderNowRegular,OrderNowPan;
+                OrderNowThin,OrderNowRegular,OrderNowPan, homeButton, menuButton, shopCartButton;
+
 
 
         private final JPanel box1,box2,box3,whiteBox1, whiteBox2, whiteBox3;
@@ -299,7 +297,7 @@ public class Menu {
                                box2, JPanel box3, JLabel thin, JLabel regular, JLabel pan,
                        JLabel pizzaImg, JLabel pizzaImg2, JLabel pizzaImg3,
                        JButton OrderNowThin,JButton OrderNowRegular, JButton OrderNowPan,
-                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3) {
+                       JPanel whiteBox1, JPanel whiteBox2, JPanel whiteBox3, JButton homeButton, JButton menuButton, JButton shopCartButton) {
             this.header = header;
             this.lwrSection = lwrSection;
             this.headLogo = headLogo;
@@ -323,6 +321,9 @@ public class Menu {
             this.whiteBox1 = whiteBox1;
             this.whiteBox2 = whiteBox2;
             this.whiteBox3 = whiteBox3;
+            this.homeButton = homeButton;
+            this.menuButton = menuButton;
+            this.shopCartButton = shopCartButton;
 
         }
 
@@ -335,59 +336,94 @@ public class Menu {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            headLogo.setBounds(2, frameHeight / 30, headLogo.getWidth(), headLogo.getHeight());
+            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            int headLogoWidth = (int) (frameWidth / 3.5);
+            int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 
-            // Adjust lower section size
-            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
+            Image scaledHeadLogo = logo.getImage().getScaledInstance(headLogoWidth, headLogoHeight, Image.SCALE_SMOOTH);
+            headLogo.setIcon(new ImageIcon(scaledHeadLogo));
+
+            int logoX = 5;
+            int logoY = 10;
+            headLogo.setBounds(logoX, logoY, headLogoWidth, headLogoHeight);
+
+            int buttonY = logoY + headLogoHeight / 2 - homeButton.getHeight() / 2;
+            MethodFactory.MenuHomeScreenFit(homeButton, frameWidth, frameHeight, logoX + headLogoWidth + 10, buttonY);
+            MethodFactory.MenuHomeScreenFit(menuButton, frameWidth, frameHeight, logoX + headLogoWidth + 15 + homeButton.getWidth(), buttonY);
+
+            MethodFactory.resizeAndSetBoundsForShopCartButton(shopCartButton, frameWidth, frameHeight);
 
             //buttons
             backButton.setBounds(15, 30, (frameWidth / 6), frameHeight / 9);
-            text.setBounds(200, 35,frameWidth/2,frameHeight/6);
-            pizzaButton.setBounds(50, 100, (75), 40);
-            sidesButton.setBounds(10,150,(75), 40);
-            drinksButton.setBounds(15,200,(75), 40);
+            text.setBounds(200, 35, frameWidth / 2, frameHeight / 6);
+            pizzaButton.setBounds(frameWidth / 16, frameHeight / 4, (frameWidth / 8), frameHeight / 22);
+            sidesButton.setBounds(frameWidth / 32, frameHeight / 3, (frameWidth / 8), frameHeight / 22);
+            drinksButton.setBounds(frameWidth / 32, frameHeight / 2, (frameWidth / 8), frameHeight / 22);
             //orderNow
-            OrderNowThin.setBounds(200,250,150,40);
-            OrderNowThin.setBounds(200,250,150,40);
-            OrderNowRegular.setBounds(400,250,150,40);
-            OrderNowPan.setBounds(600,250,150,40);
 
 
+            lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 
             //box -> thin Crust
-
-            box1.setBounds(200,100,150, 160);
-            box1.add(whiteBox1);
-            whiteBox1.setBounds(7,35,135,120);
+            ImageIcon pizzaImgIcon = MethodFactory.resizeMenuImage("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pizzaImg.PNG", frameWidth, frameHeight);
+            pizzaImg.setIcon(pizzaImgIcon);
+            int pizzaX = frameWidth / 80;
+            int pizzaY = frameHeight / 20 + frameHeight / 30;
+            pizzaImg.setBounds(pizzaX, pizzaY , pizzaImgIcon.getIconWidth(), pizzaImgIcon.getIconHeight());
+            //box1.add(whiteBox1);
             box1.add(thin);
-            thin.setBounds(50,0,75,40);
-            whiteBox1.add(pizzaImg);
-            pizzaImg.setBounds(10, 15,120,100);
+            box1.add(pizzaImg);
+            //whiteBox1.add(pizzaImg);
+            box1.setBounds(frameWidth / 5, frameHeight / 5, (int) (frameWidth / 4.5), frameHeight / 3);
+            //whiteBox1.setBounds(box1.getX(), box1.getY(), box1.getWidth(), box1.getHeight());
+            thin.setBounds(frameWidth / 32, frameHeight / 30, frameWidth / 9, frameHeight / 30);
+
+
 
             //box2 -> regular crust
-            box2.setBounds(400,100,150, 160);
-            box2.add(whiteBox2);
-            whiteBox2.setBounds(7,35,135,120);
+            pizzaImg2.setIcon(pizzaImgIcon);
+            int pizzaX2 = frameWidth / 80 + frameWidth / 5;
+            int pizzaY2 = frameHeight / 20 + frameHeight / 30;
+            pizzaImg2.setBounds(pizzaX2, pizzaY2 , pizzaImgIcon.getIconWidth(), pizzaImgIcon.getIconHeight());
+            //box2.add(whiteBox2);
             box2.add(regular);
-            regular.setBounds(30,0,95,40);
-            whiteBox2.add(pizzaImg2);
-            pizzaImg2.setBounds(10, 15,120,100);
+            box2.add(pizzaImg2);
+            //whiteBox2.add(pizzaImg2);
+            box2.setBounds(frameWidth * 2 / 5 + 55, frameHeight / 5, (int) (frameWidth / 4.5), frameHeight / 3);
+            //whiteBox2.setBounds(box2.getX(), box2.getY(), box2.getWidth(), box2.getHeight());
+            regular.setBounds(frameWidth / 32 + frameWidth / 5, frameHeight / 30, frameWidth / 9, frameHeight / 30);
+            //pizzaImg2.setBounds(frameWidth / 80 + frameWidth / 5, frameHeight / 20 + frameHeight / 30, (int) (frameWidth / 4.5), frameHeight / 4);
 
             //box3 -> pan Crust
-            box3.setBounds(600,100,150, 160);
-            box3.add(whiteBox3);
-            whiteBox3.setBounds(7,35,135,120);
+            pizzaImg3.setIcon(pizzaImgIcon);
+            int pizzaX3 = frameWidth / 80 + frameWidth * 2/ 5;
+            int pizzaY3 = frameHeight / 20 + frameHeight / 30;
+            pizzaImg3.setBounds(pizzaX3, pizzaY3 , pizzaImgIcon.getIconWidth(), pizzaImgIcon.getIconHeight());
+            //box3.add(whiteBox3);
             box3.add(pan);
-            pan.setBounds(50,0,75,40);
-            whiteBox3.add(pizzaImg3);
-            pizzaImg3.setBounds(10, 15,120,100);
+            box3.add(pizzaImg3);
+            box3.setBounds(frameWidth * 3 / 5 + 115, frameHeight / 5, (int) (frameWidth / 4.5), frameHeight / 3);
+            whiteBox3.setBounds(box3.getX(), box3.getY(), box3.getWidth(), box3.getHeight());
+            pan.setBounds(frameWidth / 32 + frameWidth * 2 / 5, frameHeight / 30, frameWidth / 9, frameHeight / 30);
+
+            int orderNowButtonWidth = frameWidth / 8;
+            int orderNowButtonHeight = frameHeight / 22;
+
+            //Using the Y and X from box 1,2, and 3 to make sure order buttons stay right below the images
+            int orderNowY = box1.getY() + box1.getHeight() + (frameHeight / 30);
+
+            OrderNowThin.setBounds(box1.getX() + (box1.getWidth() - orderNowButtonWidth) / 3, orderNowY + 10, orderNowButtonWidth + 50, orderNowButtonHeight + 30);
+
+
+            orderNowY = box2.getY() + box2.getHeight() + (frameHeight / 30);
+            OrderNowRegular.setBounds(box2.getX() + (box2.getWidth() - orderNowButtonWidth) / 3, orderNowY + 10, orderNowButtonWidth + 50, orderNowButtonHeight + 30);
+
+
+            orderNowY = box3.getY() + box3.getHeight() + (frameHeight / 30);
+            OrderNowPan.setBounds(box3.getX() + (box3.getWidth() - orderNowButtonWidth) / 3, orderNowY + 10, orderNowButtonWidth + 50, orderNowButtonHeight + 30);
 
 
 
         }
     }
-
-
-
-
 }
