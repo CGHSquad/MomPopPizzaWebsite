@@ -19,7 +19,7 @@ public class Menu {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -105,7 +105,7 @@ public class Menu {
     }
     private  JLabel getPizzaImg() {
         // Load images
-        ImageIcon pizzaIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pizzaImg.PNG");
+        ImageIcon pizzaIcon = new ImageIcon("src/CSEIcons/pizzaImg.PNG");
         Image originalImage = pizzaIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(120,100,Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(resizedImage);
@@ -336,7 +336,7 @@ public class Menu {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 
@@ -365,7 +365,7 @@ public class Menu {
             lwrSection.setPreferredSize(new Dimension(frameWidth, 5 * frameHeight / 6));
 
             //box -> thin Crust
-            ImageIcon pizzaImgIcon = MethodFactory.resizeMenuImage("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pizzaImg.PNG", frameWidth, frameHeight);
+            ImageIcon pizzaImgIcon = MethodFactory.resizeMenuImage("src/CSEIcons/pizzaImg.PNG", frameWidth, frameHeight);
             pizzaImg.setIcon(pizzaImgIcon);
             int pizzaX = frameWidth / 80;
             int pizzaY = frameHeight / 20 + frameHeight / 30;

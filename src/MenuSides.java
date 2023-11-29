@@ -18,7 +18,7 @@ public class MenuSides  extends Menu{
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -95,11 +95,11 @@ public class MenuSides  extends Menu{
         ImageIcon sideIcon = null;
         //load Images for each one
         if(side.equals("Bread Stick")){
-            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/BreadStick.PNG");
+            sideIcon = new ImageIcon("src/CSEIcons/BreadStick.PNG");
         } else if (side.equals("Bread Stick Bites")) {
-            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/BreadStickBites.jpg");
+            sideIcon = new ImageIcon("src/CSEIcons/BreadStickBites.jpg");
         } else if (side.equals("Cookies")) {
-            sideIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/cokie.PNG");
+            sideIcon = new ImageIcon("src/CSEIcons/cokie.PNG");
         }
         Image originalImage = sideIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(120,100,Image.SCALE_SMOOTH);
@@ -220,7 +220,7 @@ public class MenuSides  extends Menu{
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

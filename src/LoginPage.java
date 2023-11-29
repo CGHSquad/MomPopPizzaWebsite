@@ -27,7 +27,7 @@ public class LoginPage {
 
 
         //methods from another class
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -90,7 +90,7 @@ public class LoginPage {
     }
 
     private boolean authenticate(String email, char[] password) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/user_credentials.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/user_credentials.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -158,7 +158,7 @@ public class LoginPage {
 
 
     private static JLabel getLoginLabel(){
-        ImageIcon login = new ImageIcon("/Users/bho4/Downloads/Sign_in.png");
+        ImageIcon login = new ImageIcon("src/CSEIcons/Sign_in.png");
         JLabel var1 = new JLabel();
         var1.setIcon(login);
         var1.setBounds(250, 40, login.getIconWidth(),login.getIconHeight());
@@ -195,7 +195,7 @@ public class LoginPage {
             // Adjust header size
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

@@ -21,7 +21,7 @@ public class order_Success {
         lwrSection.setLayout(null);
 
         //Methods for homebutton, headlogo, menu button, and shop cart button for ease of access
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -122,7 +122,7 @@ public class order_Success {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

@@ -18,7 +18,7 @@ public class MenuDrinks extends Menu{
         lwrSection.setPreferredSize(new Dimension(800, 500));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -26,14 +26,14 @@ public class MenuDrinks extends Menu{
         //Drinks Text
         JLabel drinksText = getYouText("PEPSI BEVERAGES");
         //images
-        JLabel pepsiImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi.PNG",40,70);
-        JLabel pepsiDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_diet.PNG",60,70); // not same size
-        JLabel pepsiOrangeImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_orange.PNG",40,70);
-        JLabel pepsiOrangeDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/pepsi_orange.PNG",40,70);
-        JLabel rootBeerImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/root_beer.PNG",40,70);
-        JLabel rootBeerDietImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/root_beer.PNG",40,70);
-        JLabel starryImg= getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/starry.PNG",40,70);
-        JLabel lemonadeImg = getImages("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Lemonade.jpg",40,70);
+        JLabel pepsiImg = getImages("src/CSEIcons/pepsi.PNG",40,70);
+        JLabel pepsiDietImg = getImages("src/CSEIcons/pepsi_diet.PNG",60,70); // not same size
+        JLabel pepsiOrangeImg = getImages("src/CSEIcons/pepsi_orange.PNG",40,70);
+        JLabel pepsiOrangeDietImg = getImages("src/CSEIcons/pepsi_orange.PNG",40,70);
+        JLabel rootBeerImg = getImages("src/CSEIcons/root_beer.PNG",40,70);
+        JLabel rootBeerDietImg = getImages("src/CSEIcons/root_beer.PNG",40,70);
+        JLabel starryImg= getImages("src/CSEIcons/starry.PNG",40,70);
+        JLabel lemonadeImg = getImages("src/CSEIcons/Lemonade.jpg",40,70);
 
 
         //buttons
@@ -278,7 +278,7 @@ public class MenuDrinks extends Menu{
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

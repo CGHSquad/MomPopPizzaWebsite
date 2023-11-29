@@ -20,7 +20,7 @@ public class ResetPass {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JTextArea resetPass = getResetPassword();
         JTextArea emailMessage = getEmailMessage();
         JTextField email = getEmail();
@@ -176,7 +176,7 @@ public class ResetPass {
             // Adjust header size
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

@@ -29,7 +29,7 @@ public class SignUp {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton homeButton = MethodFactory.getHomeButton(frame);
         JButton menuButton = MethodFactory.getMenuButton(frame);
         JButton shopCartButton = MethodFactory.getShopCartButton(frame);
@@ -102,7 +102,7 @@ public class SignUp {
         String password = new String(passwordChars);
 
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/user_credentials.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/user_credentials.txt", true))) {
             writer.write(email + "," + password);
             writer.newLine();
             writer.flush();
@@ -136,7 +136,7 @@ public class SignUp {
     }
 
     private static JButton getCreateYourAccountButton() {
-        ImageIcon var0 = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/createaccount.png");
+        ImageIcon var0 = new ImageIcon("src/CSEIcons/createAccount.png");
         JButton var1 = new JButton();
         var1.setIcon(var0);
         var1.setFocusPainted(false);
@@ -180,7 +180,7 @@ public class SignUp {
             // Adjust header size
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 

@@ -62,7 +62,7 @@ public class MethodFactory {
 
     public static JButton getShopCartButton(JFrame frame) {
         // Load image for the shopCart
-        ImageIcon shopCartIcon = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/ShoppingCart.png");
+        ImageIcon shopCartIcon = new ImageIcon("src/CSEIcons/ShoppingCart.png");
 
         // Create a JButton for the shopCart
         JButton shopCartButton = getjButton(shopCartIcon);

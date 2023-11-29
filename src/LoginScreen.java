@@ -19,7 +19,7 @@ public class LoginScreen {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
-        JLabel headLogo = MethodFactory.createLogoLabel("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+        JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton customerButton = getCustomerButton();
         JButton employeeButton = getEmployeeButton();
         JLabel sloganButton = getSlogan();
@@ -46,7 +46,7 @@ public class LoginScreen {
     // Function to create and configure the JButton for the shopCart
 
     private JButton getCustomerButton() {
-        ImageIcon loginIcon = new ImageIcon("C:\\Users\\chris\\IdeaProjects\\Sprint2TestChris\\src\\CSEIcons\\LoginBrown.png");
+        ImageIcon loginIcon = new ImageIcon("src/CSEIcons/LoginBrown.png");
 
         Image image = loginIcon.getImage();
         Image newImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -103,7 +103,7 @@ public class LoginScreen {
 
     private static JLabel getSlogan() {
         // Load images for the logo
-        ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
+        ImageIcon slogan = new ImageIcon("src/CSEIcons/Slogan.PNG");
 
         // Create a JLabel for the logo
         JLabel headLogo = new JLabel();
@@ -171,7 +171,7 @@ public class LoginScreen {
             header.setPreferredSize(new Dimension(frameWidth, frameHeight / 6));
 
             // Stretched icon for logo
-            ImageIcon logo = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/logo.png");
+            ImageIcon logo = new ImageIcon("src/CSEIcons/logo.png");
             int headLogoWidth = (int) (frameWidth / 3.5);
             int headLogoHeight = (int) (headLogoWidth * ((double) logo.getIconHeight() / logo.getIconWidth()));
 
@@ -190,7 +190,7 @@ public class LoginScreen {
             backButton.setBounds(15, 30, (frameWidth / 6), frameHeight / 9);
 
             // Stretched icon for slogan
-            ImageIcon slogan = new ImageIcon("/Users/realcgh/IdeaProjects/Sprint2TestChris/src/CSEIcons/Slogan.PNG");
+            ImageIcon slogan = new ImageIcon("src/CSEIcons/Slogan.PNG");
             int sloganWidth = frameWidth / 2;
             int sloganHeight = (int) (sloganWidth * ((double) slogan.getIconHeight() / slogan.getIconWidth()));
 
