@@ -18,11 +18,14 @@ public class FrontEnd {
         lwrSection.setPreferredSize(new Dimension(800, 400));
         lwrSection.setLayout(null);
 
+
+        //Used to get access to buttons and labels
         JLabel headLogo = MethodFactory.createLogoLabel("src/CSEIcons/logo.png");
         JButton loginButton = getLoginButton();
         JButton guestButton = getGuestButton();
         JLabel sloganButton = getSlogan();
 
+        //Added components to the frames
         frame.add(header, BorderLayout.NORTH);
         frame.add(lwrSection, BorderLayout.CENTER);
         header.add(headLogo);
@@ -122,7 +125,7 @@ public class FrontEnd {
 
         JButton guestButton = new JButton();
         guestButton.setText("Continue as a guest");
-        guestButton.setFont(new Font(null, Font.PLAIN, 20));
+        guestButton.setFont(new Font(null, Font.PLAIN, 18));
         // Set the background color to brown using RGB (58, 34, 32)
         guestButton.setBackground(new Color(58, 34, 32));
         guestButton.setForeground(Color.WHITE);

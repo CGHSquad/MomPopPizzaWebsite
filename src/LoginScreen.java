@@ -77,7 +77,7 @@ public class LoginScreen {
 
         return customerButton;
     }
-    private static JButton getEmployeeButton() {
+    private JButton getEmployeeButton() {
 
         JButton employeeButton = new JButton();
         employeeButton.setText("Employee");
@@ -95,6 +95,7 @@ public class LoginScreen {
         ///guestButton.setBounds(450, 170, 200, 75);
         employeeButton.addActionListener(e -> {
             // Add your logic for handling shopCart button clicks here
+            JOptionPane.showMessageDialog(frame.getComponent(0), "Hello World");
             System.out.println("Employee button clicked");
         });
 

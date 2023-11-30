@@ -144,7 +144,7 @@ public class SignUp {
         var1.setBorderPainted(false);
         int var2 = var0.getIconWidth();
         int var3 = var0.getIconHeight();
-        var1.setBounds(190, 280, var2 - 50, var3 - 50);
+        var1.setBounds(190, 280, var2 - 20, var3 - 20);
         var1.addActionListener((var0x) -> signUp());
         return var1;
     }

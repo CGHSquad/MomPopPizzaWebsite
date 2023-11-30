@@ -45,6 +45,7 @@ public class Toppings {
         sizeGroup.add(extraLargeSize);
 
         // Buttons for toppings
+        JCheckBox cheese = new JCheckBox("Cheese");
         JCheckBox pepperoni = new JCheckBox("Pepperoni");
         JCheckBox sausage = new JCheckBox("Sausage");
         JCheckBox onion = new JCheckBox("Onion");
@@ -89,6 +90,7 @@ public class Toppings {
         lwrSection.add(largeSize);
         lwrSection.add(extraLargeSize);
         lwrSection.add(quantityButton);
+        lwrSection.add(cheese);
         lwrSection.add(pepperoni);
         lwrSection.add(sausage);
         lwrSection.add(onion);
@@ -107,7 +109,7 @@ public class Toppings {
         frame.addComponentListener(new ResizeListener(header, lwrSection, headLogo, backButton, size,
                 homeButton, menuButton, shopCartButton,
                 smallSize, mediumSize, largeSize, extraLargeSize,
-                quantityButton,
+                quantityButton, cheese,
                 pepperoni, sausage, onion, ham,
                 tomato, greenPepper, pineapple, mushroom,
                 addButton));
@@ -151,6 +153,8 @@ public class Toppings {
         private final JRadioButton largeSize;
         private final JRadioButton extraLargeSize;
         private final JButton quantityButton;
+
+        private final JCheckBox cheese;
         private final JCheckBox pepperoni;
         private final JCheckBox sausage;
         private final JCheckBox onion;
@@ -164,8 +168,7 @@ public class Toppings {
         ResizeListener(JPanel header, JPanel lwrSection, JLabel headLogo, JButton backButton, JLabel size,
                        JButton homeButton, JButton menuButton, JButton shopCartButton,
                        JRadioButton smallSize, JRadioButton mediumSize, JRadioButton largeSize, JRadioButton extraLargeSize,
-                       JButton quantityButton,
-                       JCheckBox pepperoni, JCheckBox sausage, JCheckBox onion, JCheckBox ham,
+                       JButton quantityButton, JCheckBox cheese, JCheckBox pepperoni, JCheckBox sausage, JCheckBox onion, JCheckBox ham,
                        JCheckBox tomato, JCheckBox greenPepper, JCheckBox pineapple, JCheckBox mushroom,
                        JButton addButton) {
             this.header = header;
@@ -181,6 +184,7 @@ public class Toppings {
             this.largeSize = largeSize;
             this.extraLargeSize = extraLargeSize;
             this.quantityButton = quantityButton;
+            this.cheese = cheese;
             this.pepperoni = pepperoni;
             this.sausage = sausage;
             this.onion = onion;
@@ -230,16 +234,17 @@ public class Toppings {
 
             quantityButton.setBounds(10, 240, 120, 30);
 
-            pepperoni.setBounds(500, 10, 100, 20);
-            sausage.setBounds(500, 40, 100, 20);
-            onion.setBounds(500, 70, 100, 20);
-            ham.setBounds(500, 100, 100, 20);
-            tomato.setBounds(500, 130, 100, 20);
-            greenPepper.setBounds(500, 160, 120, 20);
-            pineapple.setBounds(500, 190, 100, 20);
-            mushroom.setBounds(500, 220, 100, 20);
+            cheese.setBounds(500, 10, 100, 20);
+            pepperoni.setBounds(500, 40, 100, 20);
+            sausage.setBounds(500, 70, 100, 20);
+            onion.setBounds(500, 100, 100, 20);
+            ham.setBounds(500, 130, 100, 20);
+            tomato.setBounds(500, 160, 100, 20);
+            greenPepper.setBounds(500, 190, 120, 20);
+            pineapple.setBounds(500, 220, 100, 20);
+            mushroom.setBounds(500, 250, 100, 20);
 
-            addButton.setBounds(500, 250, 80, 30);
+            addButton.setBounds(500, 280, 80, 30);
         }
     }
 }
